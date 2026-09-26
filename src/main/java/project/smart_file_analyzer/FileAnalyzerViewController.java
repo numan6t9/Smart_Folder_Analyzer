@@ -3,6 +3,7 @@ package project.smart_file_analyzer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -44,9 +45,13 @@ public class FileAnalyzerViewController {
     @FXML
     private Label fileCountLabel;
 
+    @FXML
+    private Label totalSizeLabel;
 
-    ArrayList<FileInfo> fileInfos;
+    @FXML
+    private Label largestFileLabel;
 
+    private ArrayList<FileInfo> fileInfos;
 
     @FXML
     public void initialize() {
@@ -69,9 +74,25 @@ public class FileAnalyzerViewController {
                 new PropertyValueFactory<>("fileType")
         );
 
-        fileCountLabel.setText("0");
-    }
+        fileSizeTV.setCellFactory(column ->
+                new TableCell<FileInfo, Float>() {
+                    @Override
+                    protected void updateItem(Float size, boolean empty) {
+                        super.updateItem(size, empty);
 
+                        if (empty || size == null) {
+                            setText(null);
+                        } else {
+                            setText(formatFileSize(size));
+                        }
+                    }
+                }
+        );
+
+        fileCountLabel.setText("0");
+        totalSizeLabel.setText("0 B");
+        largestFileLabel.setText("N/A");
+    }
 
     @FXML
     public void searchFolder(ActionEvent actionEvent) {
@@ -79,14 +100,20 @@ public class FileAnalyzerViewController {
         String folderPath = enterFolderPath.getText();
 
         if (folderPath == null || folderPath.trim().isEmpty()) {
+            folderDataTableView.getItems().clear();
             fileCountLabel.setText("0");
+            totalSizeLabel.setText("0 B");
+            largestFileLabel.setText("N/A");
             return;
         }
 
         Path path = Paths.get(folderPath);
 
         folderDataTableView.getItems().clear();
+
         fileCountLabel.setText("0");
+        totalSizeLabel.setText("0 B");
+        largestFileLabel.setText("N/A");
 
         if (Files.exists(path) && Files.isDirectory(path)) {
 
@@ -139,12 +166,13 @@ public class FileAnalyzerViewController {
                         String.valueOf(totalFiles)
                 );
 
+                updateStatistics();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-
 
     @FXML
     public void browseFolder(ActionEvent actionEvent) {
@@ -169,5 +197,86 @@ public class FileAnalyzerViewController {
 
             searchFolder(actionEvent);
         }
+    }
+
+    @FXML
+    public void showStatistics(ActionEvent actionEvent) {
+        updateStatistics();
+    }
+
+    private void updateStatistics() {
+
+        int totalFiles =
+                folderDataTableView
+                        .getItems()
+                        .size();
+
+        if (totalFiles == 0) {
+
+            fileCountLabel.setText("0");
+            totalSizeLabel.setText("0 B");
+            largestFileLabel.setText("N/A");
+
+            return;
+        }
+
+        float totalSize = 0;
+        float largestSize = -1;
+        String largestFile = "";
+
+        for (FileInfo file :
+                folderDataTableView.getItems()) {
+
+            float size = file.getFileSize();
+
+            totalSize += size;
+
+            if (size > largestSize) {
+
+                largestSize = size;
+                largestFile = file.getFileName();
+            }
+        }
+
+        fileCountLabel.setText(
+                String.valueOf(totalFiles)
+        );
+
+        totalSizeLabel.setText(
+                formatFileSize(totalSize)
+        );
+
+        largestFileLabel.setText(
+                largestFile
+        );
+    }
+
+    private String formatFileSize(float bytes) {
+
+        if (bytes < 1024) {
+            return String.format(
+                    "%.0f B",
+                    bytes
+            );
+        }
+
+        if (bytes < 1024 * 1024) {
+            return String.format(
+                    "%.2f KB",
+                    bytes / 1024
+            );
+        }
+
+        if (bytes < 1024 * 1024 * 1024) {
+            return String.format(
+                    "%.2f MB",
+                    bytes / (1024 * 1024)
+            );
+        }
+
+        return String.format(
+                "%.2f GB",
+                bytes / (1024 * 1024 * 1024)
+        );
     }
 }

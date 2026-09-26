@@ -10,341 +10,370 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21"
+<AnchorPane fx:id="searchPanalMainPane"
+            xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="project.smart_file_analyzer.FileAnalyzerViewController"
-            fx:id="searchPanalMainPane"
-            prefHeight="850.0"
-            prefWidth="1400.0"
             style="-fx-background-color: #F5F7FA;">
 
     <children>
 
-        <!-- ========================================================= -->
-        <!-- LEFT SIDEBAR -->
-        <!-- ========================================================= -->
+        <VBox prefWidth="250.0"
+              spacing="20.0"
+              AnchorPane.topAnchor="0.0"
+              AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0"
+              style="-fx-background-color: #111827;">
 
-        <AnchorPane prefWidth="250.0"
-                    prefHeight="850.0"
-                    style="-fx-background-color: #111827;">
+            <padding>
+                <Insets top="40.0"
+                        right="20.0"
+                        bottom="25.0"
+                        left="20.0"/>
+            </padding>
 
-            <children>
+            <VBox spacing="4.0">
 
-                <!-- Application Name -->
-                <Label layoutX="29.0"
-                       layoutY="46.0"
-                       text="SMART"
-                       textFill="WHITE"
-                       style="-fx-font-size: 27px; -fx-font-weight: bold;"/>
+                <Label text="SMART"
+                       style="-fx-font-size: 27px;
+                              -fx-font-weight: bold;
+                              -fx-text-fill: white;"/>
 
-                <Label layoutX="29.0"
-                       layoutY="82.0"
-                       text="FILE ANALYZER"
-                       textFill="#60A5FA"
-                       style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <Label text="FILE ANALYZER"
+                       style="-fx-font-size: 14px;
+                              -fx-font-weight: bold;
+                              -fx-text-fill: #60A5FA;"/>
 
-                <Label layoutX="29.0"
-                       layoutY="108.0"
-                       text="Search • Analyze • Organize"
-                       textFill="#9CA3AF"
-                       style="-fx-font-size: 12px;"/>
+                <Label text="Search • Analyze • Organize"
+                       style="-fx-font-size: 12px;
+                              -fx-text-fill: #9CA3AF;"/>
 
+            </VBox>
 
-                <!-- MENU -->
-                <Label layoutX="38.0"
-                       layoutY="158.0"
-                       text="MENU"
-                       textFill="#6B7280"
-                       style="-fx-font-size: 11px; -fx-font-weight: bold;"/>
+            <VBox spacing="8.0">
 
+                <Label text="MENU"
+                       style="-fx-font-size: 11px;
+                              -fx-font-weight: bold;
+                              -fx-text-fill: #6B7280;
+                              -fx-padding: 10 10 5 10;"/>
 
-                <!-- Search Files Button -->
-                <Button layoutX="20.0"
-                        layoutY="184.0"
-                        prefWidth="210.0"
-                        prefHeight="47.0"
-                        text="Search Files"
-                        textFill="WHITE"
+                <Button text="Search Files"
                         onAction="#searchFolder"
+                        maxWidth="Infinity"
+                        prefHeight="46.0"
+                        alignment="CENTER_LEFT"
                         style="-fx-background-color: #2563EB;
-                               -fx-background-radius: 8px;
+                               -fx-background-radius: 8;
                                -fx-font-size: 14px;
                                -fx-font-weight: bold;
-                               -fx-alignment: CENTER-LEFT;
-                               -fx-padding: 0 0 0 15px;"/>
+                               -fx-text-fill: white;
+                               -fx-padding: 0 15 0 15;"/>
 
-
-                <!-- Browse Folder -->
-                <Button layoutX="20.0"
-                        layoutY="239.0"
-                        prefWidth="210.0"
-                        prefHeight="45.0"
-                        text="Browse Folder"
-                        textFill="#D1D5DB"
+                <Button text="Browse Folder"
                         onAction="#browseFolder"
+                        maxWidth="Infinity"
+                        prefHeight="46.0"
+                        alignment="CENTER_LEFT"
                         style="-fx-background-color: transparent;
-                               -fx-background-radius: 8px;
+                               -fx-background-radius: 8;
                                -fx-font-size: 14px;
-                               -fx-alignment: CENTER-LEFT;
-                               -fx-padding: 0 0 0 15px;"/>
+                               -fx-text-fill: #D1D5DB;
+                               -fx-padding: 0 15 0 15;"/>
 
-
-                <!-- File Statistics -->
-                <Button layoutX="20.0"
-                        layoutY="294.0"
-                        prefWidth="210.0"
-                        prefHeight="45.0"
-                        text="File Statistics"
-                        textFill="#D1D5DB"
+                <Button text="File Statistics"
+                        onAction="#showStatistics"
+                        maxWidth="Infinity"
+                        prefHeight="46.0"
+                        alignment="CENTER_LEFT"
                         style="-fx-background-color: transparent;
-                               -fx-background-radius: 8px;
+                               -fx-background-radius: 8;
                                -fx-font-size: 14px;
-                               -fx-alignment: CENTER-LEFT;
-                               -fx-padding: 0 0 0 15px;"/>
+                               -fx-text-fill: #D1D5DB;
+                               -fx-padding: 0 15 0 15;"/>
 
+            </VBox>
 
-                <!-- Bottom Text -->
-                <Label layoutX="29.0"
-                       layoutY="790.0"
-                       text="Smart File Analyzer"
-                       textFill="#9CA3AF"
-                       style="-fx-font-size: 12px;"/>
+            <VBox VBox.vgrow="ALWAYS"/>
 
-            </children>
+            <VBox spacing="4.0">
 
-        </AnchorPane>
+                <Label text="Smart File Analyzer"
+                       style="-fx-font-size: 12px;
+                              -fx-text-fill: #9CA3AF;"/>
 
+                <Label text="Version 1.0"
+                       style="-fx-font-size: 11px;
+                              -fx-text-fill: #6B7280;"/>
 
-        <!-- ========================================================= -->
-        <!-- MAIN CONTENT -->
-        <!-- ========================================================= -->
+            </VBox>
 
-        <AnchorPane layoutX="250.0"
-                    prefWidth="1150.0"
-                    prefHeight="850.0"
-                    style="-fx-background-color: #F5F7FA;">
+        </VBox>
 
-            <children>
+        <VBox spacing="22.0"
+              AnchorPane.topAnchor="0.0"
+              AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="250.0"
+              AnchorPane.rightAnchor="0.0">
 
-                <!-- ================================================= -->
-                <!-- HEADER -->
-                <!-- ================================================= -->
+            <padding>
+                <Insets top="35.0"
+                        right="40.0"
+                        bottom="25.0"
+                        left="40.0"/>
+            </padding>
 
-                <Label layoutX="40.0"
-                       layoutY="38.0"
-                       text="File Search"
-                       textFill="#111827"
-                       style="-fx-font-size: 30px; -fx-font-weight: bold;"/>
+            <HBox alignment="CENTER_LEFT">
 
-                <Label layoutX="40.0"
-                       layoutY="82.0"
-                       text="Search and analyze files from your computer."
-                       textFill="#64748B"
-                       style="-fx-font-size: 14px;"/>
+                <VBox spacing="5.0">
 
+                    <Label text="File Search"
+                           style="-fx-font-size: 30px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: #111827;"/>
 
-                <!-- STATUS -->
-                <Label layoutX="1060.0"
-                       layoutY="54.0"
-                       text="STATUS"
-                       textFill="#94A3B8"
-                       style="-fx-font-size: 10px; -fx-font-weight: bold;"/>
+                    <Label text="Search and analyze files from your computer."
+                           style="-fx-font-size: 14px;
+                                  -fx-text-fill: #64748B;"/>
 
-                <Label layoutX="1060.0"
-                       layoutY="76.0"
-                       text="Ready"
-                       textFill="#16A34A"
-                       style="-fx-font-size: 13px; -fx-font-weight: bold;"/>
+                </VBox>
 
+                <HBox HBox.hgrow="ALWAYS"/>
 
-                <!-- ================================================= -->
-                <!-- FOLDER SEARCH CARD -->
-                <!-- ================================================= -->
+                <VBox alignment="CENTER_RIGHT"
+                      spacing="3.0">
 
-                <AnchorPane layoutX="40.0"
-                            layoutY="130.0"
-                            prefWidth="1070.0"
-                            prefHeight="105.0"
-                            style="-fx-background-color: white;
-                                   -fx-background-radius: 12px;
-                                   -fx-border-color: #E2E8F0;
-                                   -fx-border-radius: 12px;">
+                    <Label text="STATUS"
+                           style="-fx-font-size: 10px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: #94A3B8;"/>
 
-                    <children>
+                    <Label text="Ready"
+                           style="-fx-font-size: 13px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: #16A34A;"/>
 
-                        <Label layoutX="22.0"
-                               layoutY="20.0"
-                               text="Folder Location"
-                               textFill="#334155"
-                               style="-fx-font-size: 14px;
-                                      -fx-font-weight: bold;"/>
+                </VBox>
 
+            </HBox>
 
-                        <!-- Folder Path -->
-                        <TextField fx:id="enterFolderPath"
-                                   layoutX="22.0"
-                                   layoutY="52.0"
-                                   prefWidth="800.0"
-                                   prefHeight="32.0"
-                                   promptText="Enter folder path..."
-                                   style="-fx-background-color: #F8FAFC;
-                                          -fx-border-color: #CBD5E1;
-                                          -fx-border-radius: 7px;
-                                          -fx-background-radius: 7px;
-                                          -fx-padding: 0 12px;
-                                          -fx-font-size: 13px;"/>
+            <VBox spacing="12.0"
+                  style="-fx-background-color: white;
+                         -fx-background-radius: 12;
+                         -fx-border-color: #E2E8F0;
+                         -fx-border-radius: 12;">
 
+                <padding>
+                    <Insets top="20.0"
+                            right="22.0"
+                            bottom="20.0"
+                            left="22.0"/>
+                </padding>
 
-                        <!-- Browse -->
-                        <Button layoutX="835.0"
-                                layoutY="52.0"
-                                prefWidth="105.0"
-                                prefHeight="32.0"
-                                text="Browse"
-                                onAction="#browseFolder"
-                                style="-fx-background-color: #E5E7EB;
-                                       -fx-text-fill: #334155;
-                                       -fx-background-radius: 7px;
-                                       -fx-font-size: 13px;
-                                       -fx-font-weight: bold;"/>
+                <Label text="Folder Location"
+                       style="-fx-font-size: 14px;
+                              -fx-font-weight: bold;
+                              -fx-text-fill: #334155;"/>
 
+                <HBox spacing="10.0">
 
-                        <!-- Search -->
-                        <Button layoutX="950.0"
-                                layoutY="52.0"
-                                prefWidth="105.0"
-                                prefHeight="32.0"
-                                text="Search"
-                                onAction="#searchFolder"
-                                style="-fx-background-color: #2563EB;
-                                       -fx-text-fill: white;
-                                       -fx-background-radius: 7px;
-                                       -fx-font-size: 13px;
-                                       -fx-font-weight: bold;"/>
+                    <TextField fx:id="enterFolderPath"
+                               promptText="Enter folder path..."
+                               prefHeight="40.0"
+                               HBox.hgrow="ALWAYS"
+                               style="-fx-background-color: #F8FAFC;
+                                      -fx-border-color: #CBD5E1;
+                                      -fx-border-radius: 7;
+                                      -fx-background-radius: 7;
+                                      -fx-padding: 0 12 0 12;
+                                      -fx-font-size: 13px;"/>
 
-                    </children>
+                    <Button text="Browse"
+                            onAction="#browseFolder"
+                            mnemonicParsing="false"
+                            prefWidth="105.0"
+                            prefHeight="40.0"
+                            style="-fx-background-color: #E5E7EB;
+                                   -fx-text-fill: #334155;
+                                   -fx-background-radius: 7;
+                                   -fx-font-size: 13px;
+                                   -fx-font-weight: bold;"/>
 
-                </AnchorPane>
+                    <Button text="Search"
+                            onAction="#searchFolder"
+                            mnemonicParsing="false"
+                            prefWidth="105.0"
+                            prefHeight="40.0"
+                            style="-fx-background-color: #2563EB;
+                                   -fx-text-fill: white;
+                                   -fx-background-radius: 7;
+                                   -fx-font-size: 13px;
+                                   -fx-font-weight: bold;"/>
 
+                </HBox>
 
-                <!-- ================================================= -->
-                <!-- FILE COUNT CARD -->
-                <!-- ================================================= -->
+            </VBox>
 
-                <AnchorPane layoutX="40.0"
-                            layoutY="260.0"
-                            prefWidth="1070.0"
-                            prefHeight="77.0"
-                            style="-fx-background-color: white;
-                                   -fx-background-radius: 12px;
-                                   -fx-border-color: #E2E8F0;
-                                   -fx-border-radius: 12px;">
+            <HBox spacing="15.0">
 
-                    <children>
+                <VBox spacing="5.0"
+                      prefHeight="75.0"
+                      HBox.hgrow="ALWAYS"
+                      style="-fx-background-color: white;
+                             -fx-background-radius: 12;
+                             -fx-border-color: #E2E8F0;
+                             -fx-border-radius: 12;">
 
-                        <Label layoutX="18.0"
-                               layoutY="16.0"
-                               text="FILES FOUND"
-                               textFill="#94A3B8"
-                               style="-fx-font-size: 10px;
-                                      -fx-font-weight: bold;"/>
+                    <padding>
+                        <Insets top="15.0"
+                                right="18.0"
+                                bottom="15.0"
+                                left="18.0"/>
+                    </padding>
 
+                    <Label text="FILES FOUND"
+                           style="-fx-font-size: 10px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: #94A3B8;"/>
 
-                        <!-- IMPORTANT -->
-                        <!-- This fixes your NullPointerException -->
-                        <Label fx:id="fileCountLabel"
-                               layoutX="18.0"
-                               layoutY="35.0"
-                               text="0"
-                               textFill="#111827"
-                               style="-fx-font-size: 20px;
-                                      -fx-font-weight: bold;"/>
+                    <Label fx:id="fileCountLabel"
+                           text="0"
+                           style="-fx-font-size: 18px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: #111827;"/>
 
-                    </children>
+                </VBox>
 
-                </AnchorPane>
+                <VBox spacing="5.0"
+                      prefHeight="75.0"
+                      HBox.hgrow="ALWAYS"
+                      style="-fx-background-color: white;
+                             -fx-background-radius: 12;
+                             -fx-border-color: #E2E8F0;
+                             -fx-border-radius: 12;">
 
+                    <padding>
+                        <Insets top="15.0"
+                                right="18.0"
+                                bottom="15.0"
+                                left="18.0"/>
+                    </padding>
 
-                <!-- ================================================= -->
-                <!-- SEARCH RESULTS HEADER -->
-                <!-- ================================================= -->
+                    <Label text="TOTAL SIZE"
+                           style="-fx-font-size: 10px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: #94A3B8;"/>
 
-                <Label layoutX="40.0"
-                       layoutY="365.0"
-                       text="Search Results"
-                       textFill="#111827"
-                       style="-fx-font-size: 21px;
-                              -fx-font-weight: bold;"/>
+                    <Label fx:id="totalSizeLabel"
+                           text="0 B"
+                           style="-fx-font-size: 18px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: #111827;"/>
 
-                <Label layoutX="40.0"
-                       layoutY="396.0"
-                       text="Files discovered in the selected folder"
-                       textFill="#64748B"
-                       style="-fx-font-size: 12px;"/>
+                </VBox>
 
-                <Label layoutX="1015.0"
-                       layoutY="385.0"
-                       text="File Details"
-                       textFill="#94A3B8"
-                       style="-fx-font-size: 12px;"/>
+                <VBox spacing="5.0"
+                      prefHeight="75.0"
+                      HBox.hgrow="ALWAYS"
+                      style="-fx-background-color: white;
+                             -fx-background-radius: 12;
+                             -fx-border-color: #E2E8F0;
+                             -fx-border-radius: 12;">
 
+                    <padding>
+                        <Insets top="15.0"
+                                right="18.0"
+                                bottom="15.0"
+                                left="18.0"/>
+                    </padding>
 
-                <!-- ================================================= -->
-                <!-- TABLE -->
-                <!-- ================================================= -->
+                    <Label text="LARGEST FILE"
+                           style="-fx-font-size: 10px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: #94A3B8;"/>
 
-                <TableView fx:id="folderDataTableView"
-                           layoutX="40.0"
-                           layoutY="425.0"
-                           prefWidth="1070.0"
-                           prefHeight="330.0"
-                           style="-fx-background-color: white;
-                                  -fx-border-color: #E2E8F0;
-                                  -fx-border-radius: 8px;
-                                  -fx-background-radius: 8px;">
+                    <Label fx:id="largestFileLabel"
+                           text="N/A"
+                           maxWidth="Infinity"
+                           style="-fx-font-size: 15px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: #111827;"/>
 
-                    <columns>
+                </VBox>
 
-                        <TableColumn fx:id="fileNameTV"
-                                     text="File Name"
-                                     prefWidth="250.0"/>
+            </HBox>
 
-                        <TableColumn fx:id="fileTypeTV"
-                                     text="File Type"
-                                     prefWidth="170.0"/>
+            <HBox alignment="CENTER_LEFT">
 
-                        <TableColumn fx:id="fileSizeTV"
-                                     text="File Size"
-                                     prefWidth="140.0"/>
+                <VBox spacing="3.0">
 
-                        <TableColumn fx:id="fileLocationTV"
-                                     text="File Location"
-                                     prefWidth="500.0"/>
+                    <Label text="Search Results"
+                           style="-fx-font-size: 21px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: #111827;"/>
 
-                    </columns>
+                    <Label text="Files discovered in the selected folder"
+                           style="-fx-font-size: 12px;
+                                  -fx-text-fill: #64748B;"/>
 
-                </TableView>
+                </VBox>
 
+                <HBox HBox.hgrow="ALWAYS"/>
 
-                <!-- ================================================= -->
-                <!-- FOOTER -->
-                <!-- ================================================= -->
+                <Label text="File Details"
+                       style="-fx-font-size: 12px;
+                              -fx-text-fill: #94A3B8;"/>
 
-                <Label layoutX="40.0"
-                       layoutY="785.0"
-                       text="Smart File Analyzer • File Search"
-                       textFill="#94A3B8"
-                       style="-fx-font-size: 11px;"/>
+            </HBox>
 
-                <Label layoutX="1060.0"
-                       layoutY="785.0"
-                       text="Ready"
-                       textFill="#16A34A"
-                       style="-fx-font-size: 11px;"/>
+            <TableView fx:id="folderDataTableView"
+                       VBox.vgrow="ALWAYS"
+                       style="-fx-background-color: white;
+                              -fx-border-color: #E2E8F0;
+                              -fx-border-radius: 8;
+                              -fx-background-radius: 8;">
 
-            </children>
+                <columns>
 
-        </AnchorPane>
+                    <TableColumn fx:id="fileNameTV"
+                                 text="File Name"
+                                 prefWidth="250.0"
+                                 minWidth="150.0"/>
+
+                    <TableColumn fx:id="fileTypeTV"
+                                 text="File Type"
+                                 prefWidth="170.0"
+                                 minWidth="100.0"/>
+
+                    <TableColumn fx:id="fileSizeTV"
+                                 text="File Size"
+                                 prefWidth="140.0"
+                                 minWidth="90.0"/>
+
+                    <TableColumn fx:id="fileLocationTV"
+                                 text="File Location"
+                                 prefWidth="500.0"
+                                 minWidth="200.0"/>
+
+                </columns>
+
+            </TableView>
+
+            <HBox alignment="CENTER_LEFT">
+
+                <Label text="Smart File Analyzer • File Search"
+                       style="-fx-font-size: 11px;
+                              -fx-text-fill: #94A3B8;"/>
+
+                <HBox HBox.hgrow="ALWAYS"/>
+
+                <Label text="Ready"
+                       style="-fx-font-size: 11px;
+                              -fx-text-fill: #16A34A;"/>
+
+            </HBox>
+
+        </VBox>
 
     </children>
 
