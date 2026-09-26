@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="project.smart_file_analyzer.FileAnalyzerViewController"
+            fx:id="searchPanalMainPane"
+            prefHeight="850.0"
+            prefWidth="1400.0"
+            style="-fx-background-color: #F5F7FA;">
+
+    <children>
+
+        <!-- ========================================================= -->
+        <!-- LEFT SIDEBAR -->
+        <!-- ========================================================= -->
+
+        <AnchorPane prefWidth="250.0"
+                    prefHeight="850.0"
+                    style="-fx-background-color: #111827;">
+
+            <children>
+
+                <!-- Application Name -->
+                <Label layoutX="29.0"
+                       layoutY="46.0"
+                       text="SMART"
+                       textFill="WHITE"
+                       style="-fx-font-size: 27px; -fx-font-weight: bold;"/>
+
+                <Label layoutX="29.0"
+                       layoutY="82.0"
+                       text="FILE ANALYZER"
+                       textFill="#60A5FA"
+                       style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+
+                <Label layoutX="29.0"
+                       layoutY="108.0"
+                       text="Search • Analyze • Organize"
+                       textFill="#9CA3AF"
+                       style="-fx-font-size: 12px;"/>
+
+
+                <!-- MENU -->
+                <Label layoutX="38.0"
+                       layoutY="158.0"
+                       text="MENU"
+                       textFill="#6B7280"
+                       style="-fx-font-size: 11px; -fx-font-weight: bold;"/>
+
+
+                <!-- Search Files Button -->
+                <Button layoutX="20.0"
+                        layoutY="184.0"
+                        prefWidth="210.0"
+                        prefHeight="47.0"
+                        text="Search Files"
+                        textFill="WHITE"
+                        onAction="#searchFolder"
+                        style="-fx-background-color: #2563EB;
+                               -fx-background-radius: 8px;
+                               -fx-font-size: 14px;
+                               -fx-font-weight: bold;
+                               -fx-alignment: CENTER-LEFT;
+                               -fx-padding: 0 0 0 15px;"/>
+
+
+                <!-- Browse Folder -->
+                <Button layoutX="20.0"
+                        layoutY="239.0"
+                        prefWidth="210.0"
+                        prefHeight="45.0"
+                        text="Browse Folder"
+                        textFill="#D1D5DB"
+                        onAction="#browseFolder"
+                        style="-fx-background-color: transparent;
+                               -fx-background-radius: 8px;
+                               -fx-font-size: 14px;
+                               -fx-alignment: CENTER-LEFT;
+                               -fx-padding: 0 0 0 15px;"/>
+
+
+                <!-- File Statistics -->
+                <Button layoutX="20.0"
+                        layoutY="294.0"
+                        prefWidth="210.0"
+                        prefHeight="45.0"
+                        text="File Statistics"
+                        textFill="#D1D5DB"
+                        style="-fx-background-color: transparent;
+                               -fx-background-radius: 8px;
+                               -fx-font-size: 14px;
+                               -fx-alignment: CENTER-LEFT;
+                               -fx-padding: 0 0 0 15px;"/>
+
+
+                <!-- Bottom Text -->
+                <Label layoutX="29.0"
+                       layoutY="790.0"
+                       text="Smart File Analyzer"
+                       textFill="#9CA3AF"
+                       style="-fx-font-size: 12px;"/>
+
+            </children>
+
+        </AnchorPane>
+
+
+        <!-- ========================================================= -->
+        <!-- MAIN CONTENT -->
+        <!-- ========================================================= -->
+
+        <AnchorPane layoutX="250.0"
+                    prefWidth="1150.0"
+                    prefHeight="850.0"
+                    style="-fx-background-color: #F5F7FA;">
+
+            <children>
+
+                <!-- ================================================= -->
+                <!-- HEADER -->
+                <!-- ================================================= -->
+
+                <Label layoutX="40.0"
+                       layoutY="38.0"
+                       text="File Search"
+                       textFill="#111827"
+                       style="-fx-font-size: 30px; -fx-font-weight: bold;"/>
+
+                <Label layoutX="40.0"
+                       layoutY="82.0"
+                       text="Search and analyze files from your computer."
+                       textFill="#64748B"
+                       style="-fx-font-size: 14px;"/>
+
+
+                <!-- STATUS -->
+                <Label layoutX="1060.0"
+                       layoutY="54.0"
+                       text="STATUS"
+                       textFill="#94A3B8"
+                       style="-fx-font-size: 10px; -fx-font-weight: bold;"/>
+
+                <Label layoutX="1060.0"
+                       layoutY="76.0"
+                       text="Ready"
+                       textFill="#16A34A"
+                       style="-fx-font-size: 13px; -fx-font-weight: bold;"/>
+
+
+                <!-- ================================================= -->
+                <!-- FOLDER SEARCH CARD -->
+                <!-- ================================================= -->
+
+                <AnchorPane layoutX="40.0"
+                            layoutY="130.0"
+                            prefWidth="1070.0"
+                            prefHeight="105.0"
+                            style="-fx-background-color: white;
+                                   -fx-background-radius: 12px;
+                                   -fx-border-color: #E2E8F0;
+                                   -fx-border-radius: 12px;">
+
+                    <children>
+
+                        <Label layoutX="22.0"
+                               layoutY="20.0"
+                               text="Folder Location"
+                               textFill="#334155"
+                               style="-fx-font-size: 14px;
+                                      -fx-font-weight: bold;"/>
+
+
+                        <!-- Folder Path -->
+                        <TextField fx:id="enterFolderPath"
+                                   layoutX="22.0"
+                                   layoutY="52.0"
+                                   prefWidth="800.0"
+                                   prefHeight="32.0"
+                                   promptText="Enter folder path..."
+                                   style="-fx-background-color: #F8FAFC;
+                                          -fx-border-color: #CBD5E1;
+                                          -fx-border-radius: 7px;
+                                          -fx-background-radius: 7px;
+                                          -fx-padding: 0 12px;
+                                          -fx-font-size: 13px;"/>
+
+
+                        <!-- Browse -->
+                        <Button layoutX="835.0"
+                                layoutY="52.0"
+                                prefWidth="105.0"
+                                prefHeight="32.0"
+                                text="Browse"
+                                onAction="#browseFolder"
+                                style="-fx-background-color: #E5E7EB;
+                                       -fx-text-fill: #334155;
+                                       -fx-background-radius: 7px;
+                                       -fx-font-size: 13px;
+                                       -fx-font-weight: bold;"/>
+
+
+                        <!-- Search -->
+                        <Button layoutX="950.0"
+                                layoutY="52.0"
+                                prefWidth="105.0"
+                                prefHeight="32.0"
+                                text="Search"
+                                onAction="#searchFolder"
+                                style="-fx-background-color: #2563EB;
+                                       -fx-text-fill: white;
+                                       -fx-background-radius: 7px;
+                                       -fx-font-size: 13px;
+                                       -fx-font-weight: bold;"/>
+
+                    </children>
+
+                </AnchorPane>
+
+
+                <!-- ================================================= -->
+                <!-- FILE COUNT CARD -->
+                <!-- ================================================= -->
+
+                <AnchorPane layoutX="40.0"
+                            layoutY="260.0"
+                            prefWidth="1070.0"
+                            prefHeight="77.0"
+                            style="-fx-background-color: white;
+                                   -fx-background-radius: 12px;
+                                   -fx-border-color: #E2E8F0;
+                                   -fx-border-radius: 12px;">
+
+                    <children>
+
+                        <Label layoutX="18.0"
+                               layoutY="16.0"
+                               text="FILES FOUND"
+                               textFill="#94A3B8"
+                               style="-fx-font-size: 10px;
+                                      -fx-font-weight: bold;"/>
+
+
+                        <!-- IMPORTANT -->
+                        <!-- This fixes your NullPointerException -->
+                        <Label fx:id="fileCountLabel"
+                               layoutX="18.0"
+                               layoutY="35.0"
+                               text="0"
+                               textFill="#111827"
+                               style="-fx-font-size: 20px;
+                                      -fx-font-weight: bold;"/>
+
+                    </children>
+
+                </AnchorPane>
+
+
+                <!-- ================================================= -->
+                <!-- SEARCH RESULTS HEADER -->
+                <!-- ================================================= -->
+
+                <Label layoutX="40.0"
+                       layoutY="365.0"
+                       text="Search Results"
+                       textFill="#111827"
+                       style="-fx-font-size: 21px;
+                              -fx-font-weight: bold;"/>
+
+                <Label layoutX="40.0"
+                       layoutY="396.0"
+                       text="Files discovered in the selected folder"
+                       textFill="#64748B"
+                       style="-fx-font-size: 12px;"/>
+
+                <Label layoutX="1015.0"
+                       layoutY="385.0"
+                       text="File Details"
+                       textFill="#94A3B8"
+                       style="-fx-font-size: 12px;"/>
+
+
+                <!-- ================================================= -->
+                <!-- TABLE -->
+                <!-- ================================================= -->
+
+                <TableView fx:id="folderDataTableView"
+                           layoutX="40.0"
+                           layoutY="425.0"
+                           prefWidth="1070.0"
+                           prefHeight="330.0"
+                           style="-fx-background-color: white;
+                                  -fx-border-color: #E2E8F0;
+                                  -fx-border-radius: 8px;
+                                  -fx-background-radius: 8px;">
+
+                    <columns>
+
+                        <TableColumn fx:id="fileNameTV"
+                                     text="File Name"
+                                     prefWidth="250.0"/>
+
+                        <TableColumn fx:id="fileTypeTV"
+                                     text="File Type"
+                                     prefWidth="170.0"/>
+
+                        <TableColumn fx:id="fileSizeTV"
+                                     text="File Size"
+                                     prefWidth="140.0"/>
+
+                        <TableColumn fx:id="fileLocationTV"
+                                     text="File Location"
+                                     prefWidth="500.0"/>
+
+                    </columns>
+
+                </TableView>
+
+
+                <!-- ================================================= -->
+                <!-- FOOTER -->
+                <!-- ================================================= -->
+
+                <Label layoutX="40.0"
+                       layoutY="785.0"
+                       text="Smart File Analyzer • File Search"
+                       textFill="#94A3B8"
+                       style="-fx-font-size: 11px;"/>
+
+                <Label layoutX="1060.0"
+                       layoutY="785.0"
+                       text="Ready"
+                       textFill="#16A34A"
+                       style="-fx-font-size: 11px;"/>
+
+            </children>
+
+        </AnchorPane>
+
+    </children>
+
+</AnchorPane>
